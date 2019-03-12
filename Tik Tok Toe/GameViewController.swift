@@ -15,48 +15,78 @@ class ViewController: UIViewController {
     @IBOutlet var bottomLabel: UILabel!
     @IBOutlet var buttons: [UIButton]!
     
+    var game: GameClass!
+    var turn = true
+    
     // MARK: Actions
     @IBAction func firstButton(_ sender: Any) {
-        buttons[0].titleLabel?.text = ""
+        turn(number: 0)
     }
     
     @IBAction func secondButton(_ sender: Any) {
-        buttons[1].titleLabel?.text = ""
+        turn(number: 1)
     }
     
     @IBAction func thirdButton(_ sender: Any) {
-        buttons[2].titleLabel?.text = ""
+        turn(number: 2)
     }
     
     @IBAction func fourthButton(_ sender: Any) {
-        buttons[3].titleLabel?.text = ""
+        turn(number: 3)
     }
     
     @IBAction func fifthButton(_ sender: Any) {
-        buttons[4].titleLabel?.text = ""
+        turn(number: 4)
     }
     
     @IBAction func sixthButton(_ sender: Any) {
-        buttons[5].titleLabel?.text = ""
+        turn(number: 5)
     }
     
     @IBAction func seventhButton(_ sender: Any) {
-        buttons[6].titleLabel?.text = ""
+        turn(number: 6)
     }
     
     @IBAction func eighthButton(_ sender: Any) {
-        buttons[7].titleLabel?.text = ""
+        turn(number: 7)
     }
     
     @IBAction func ninthButton(_ sender: Any) {
-        buttons[9].titleLabel?.text = ""
+        turn(number: 8)
     }
     
-    
+    func turn(number: Int) {
+        if turn == true {
+            buttons[number].setTitle("Chosen", for: .normal)
+            turn = false
+        } else if turn == false {
+            buttons[number].setTitle("UnChosen", for: .normal)
+            turn = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+//        game.level = 1
+//        game.score = 0
+        turn = true
+
+//        interface()
+//        gameRule()
+        
+    }
+    
+    func gameRule() {
+
+        if game.turn {
+            topLabel.text = "Your turn !"
+            bottomLabel.text = "Wait !"
+        } else {
+            topLabel.text = "Wait !"
+            bottomLabel.text = "Your turn !"
+        }
+        
     }
     
     func interface() {

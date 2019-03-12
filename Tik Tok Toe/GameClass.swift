@@ -11,7 +11,7 @@ import Foundation
 class GameClass {
     
     var level = 0
-    var turn = false
+    var turn = true
     var score = 0
     
 }
