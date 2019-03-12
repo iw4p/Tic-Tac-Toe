@@ -1,6 +1,6 @@
 //
 //  Extension.swift
-//  Tik Tok Toe
+//  Tic Toc Toe
 //
 //  Created by Nima Akbarzade on 12/21/1397 AP.
 //  Copyright © 1397 AP Nima Akbarzade. All rights reserved.

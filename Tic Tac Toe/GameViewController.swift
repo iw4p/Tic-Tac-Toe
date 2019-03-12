@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Tik Tok Toe
+//  Tic Toc Toe
 //
 //  Created by Nima Akbarzade on 12/21/1397 AP.
 //  Copyright © 1397 AP Nima Akbarzade. All rights reserved.
@@ -18,7 +18,21 @@ class ViewController: UIViewController {
     var game: GameClass!
     var turn = true
     
+    
     // MARK: Actions
+    @IBAction func resetButton(_ sender: Any) {
+        
+        for button in buttons {
+            button.setTitle("", for: .normal)
+            button.isEnabled = true
+        }
+        
+        topLabel.text = "Your turn ! X"
+        bottomLabel.text = "Wait ! O"
+        
+        turn = true
+    }
+    
     @IBAction func firstButton(_ sender: Any) {
         turn(number: 0)
     }
@@ -56,11 +70,20 @@ class ViewController: UIViewController {
     }
     
     func turn(number: Int) {
+        
+//        game.turn = turn
+        
         if turn == true {
-            buttons[number].setTitle("Chosen", for: .normal)
+            buttons[number].setTitle("X", for: .normal)
+            buttons[number].isEnabled = false
+            topLabel.text = "Your turn ! O"
+            bottomLabel.text = "Wait ! X"
             turn = false
         } else if turn == false {
-            buttons[number].setTitle("UnChosen", for: .normal)
+            buttons[number].setTitle("O", for: .normal)
+            buttons[number].isEnabled = false
+            topLabel.text = "Wait ! O"
+            bottomLabel.text = "Your turn ! X"
             turn = true
         }
     }
@@ -68,10 +91,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        game.turn = turn
+//
+//        turn = true
 //        game.level = 1
-//        game.score = 0
-        turn = true
-
+//        game?.turn = true
+//        var turns = game.turn
+//        turns = true
+//        turn = true
+//        print("==========")
 //        interface()
 //        gameRule()
         
