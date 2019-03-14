@@ -17,20 +17,30 @@ class ViewController: UIViewController {
     
     var game: GameClass!
     var turn = true
-    
-    
+    var array = [Int:Bool]()
+    var result = false
     // MARK: Actions
-    @IBAction func resetButton(_ sender: Any) {
-        
+    
+    func reset () {
         for button in buttons {
             button.setTitle("", for: .normal)
             button.isEnabled = true
         }
         
+        array = [Int:Bool]()
+        
         topLabel.text = "Your turn ! X"
         bottomLabel.text = "Wait ! O"
         
         turn = true
+        result = false
+    }
+    
+    
+    @IBAction func resetButton(_ sender: Any) {
+        
+        reset()
+     
     }
     
     @IBAction func firstButton(_ sender: Any) {
@@ -71,7 +81,6 @@ class ViewController: UIViewController {
     
     func turn(number: Int) {
         
-//        game.turn = turn
         
         if turn == true {
             buttons[number].setTitle("X", for: .normal)
@@ -79,13 +88,82 @@ class ViewController: UIViewController {
             topLabel.text = "Your turn ! O"
             bottomLabel.text = "Wait ! X"
             turn = false
+            array[number] = true
+            check()
         } else if turn == false {
             buttons[number].setTitle("O", for: .normal)
             buttons[number].isEnabled = false
             topLabel.text = "Wait ! O"
             bottomLabel.text = "Your turn ! X"
             turn = true
+            array[number] = false
+            check()
         }
+        print(array)
+    }
+    
+    func check() {
+        
+        if array[0] == true && array[1] == true && array[2] == true ||
+            array[0] == false && array[1] == false && array[2] == false {
+            print("YOU WIN")
+            result = true
+        }
+        
+        else if array[0] == true && array[3] == true && array[6] == true ||
+            array[0] == false && array[3] == false && array[6] == false {
+            result = true
+        }
+        
+        else if array[0] == true && array[4] == true && array[8] == true ||
+            array[0] == false && array[4] == false && array[8] == false {
+            result = true
+        }
+        
+        else if array[1] == true && array[4] == true && array[7] == true ||
+            array[1] == false && array[4] == false && array[7] == false {
+            result = true
+        }
+        
+        else if array[2] == true && array[5] == true && array[8] == true ||
+            array[2] == false && array[5] == false && array[8] == false {
+            result = true
+        }
+        
+        else if array[2] == true && array[4] == true && array[6] == true ||
+            array[2] == false && array[4] == false && array[6] == false {
+            result = true
+        }
+        
+        else if array[3] == true && array[4] == true && array[5] == true ||
+            array[3] == false && array[1] == false && array[5] == false {
+            result = true
+        }
+        
+        else if array[6] == true && array[7] == true && array[8] == true ||
+            array[6] == false && array[7] == false && array[8] == false {
+            result = true
+        }
+        
+        if result == true {
+            let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    self.reset()
+
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(alert, animated: true, completion: nil)
+        }
+ 
     }
     
     override func viewDidLoad() {
