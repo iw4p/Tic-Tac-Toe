@@ -162,6 +162,23 @@ class ViewController: UIViewController {
                     
                 }}))
             self.present(alert, animated: true, completion: nil)
+        } else if array.count == 9 && result == false {
+            let alert = UIAlertController(title: "Alert", message: "DRAW", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    self.reset()
+                    
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(alert, animated: true, completion: nil)
         }
  
     }
