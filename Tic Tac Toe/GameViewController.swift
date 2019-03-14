@@ -85,16 +85,16 @@ class ViewController: UIViewController {
         if turn == true {
             buttons[number].setTitle("X", for: .normal)
             buttons[number].isEnabled = false
-            topLabel.text = "Your turn ! O"
-            bottomLabel.text = "Wait ! X"
+            topLabel.text = "Wait ! X"
+            bottomLabel.text = "Your turn ! O"
             turn = false
             array[number] = true
             check()
         } else if turn == false {
             buttons[number].setTitle("O", for: .normal)
             buttons[number].isEnabled = false
-            topLabel.text = "Wait ! O"
-            bottomLabel.text = "Your turn ! X"
+            topLabel.text = "Your turn ! X"
+            bottomLabel.text = "Wait ! O"
             turn = true
             array[number] = false
             check()
@@ -136,7 +136,7 @@ class ViewController: UIViewController {
         }
         
         else if array[3] == true && array[4] == true && array[5] == true ||
-            array[3] == false && array[1] == false && array[5] == false {
+            array[3] == false && array[4] == false && array[5] == false {
             result = true
         }
         
@@ -146,7 +146,7 @@ class ViewController: UIViewController {
         }
         
         if result == true {
-            let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Alert", message: "You WIN !", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
                 case .default:
@@ -163,7 +163,7 @@ class ViewController: UIViewController {
                 }}))
             self.present(alert, animated: true, completion: nil)
         } else if array.count == 9 && result == false {
-            let alert = UIAlertController(title: "Alert", message: "DRAW", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Alert", message: "DRAW !", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
                 case .default:
